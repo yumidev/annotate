@@ -6,8 +6,11 @@ class Home extends Component {
     return (
       // what is it that makes it happen that I can use html here? jsx??
       <div>
-      <h1>Welcome</h1>
-      <p>Hello World</p>
+        <Link to="/search">
+          <button className="button-primary"> Search for a song </button>
+        </Link>
+        <h1>Welcome</h1>
+        <p>Hello World</p>
       </div>
     );
   }
