@@ -17,13 +17,12 @@ class Search extends Component {
   }
   handleSubmit(e) {
     const searchQuery = this.state.search;
-    this.context.router.push( `/lyrics/${this.state.search}` );
+    this.context.router.push( `/${this.state.search}` );
   }
   render(){
     console.log( this );
     return (
       <div>
-        <p>Hi</p>
         <h3><em>Search</em></h3>
         <input
           type="text"
