@@ -29,12 +29,6 @@ app.use('/lyricdata', routes);
 //     next(err);
 // });
 
-// app.get("/lyrics/json", function (req, res) {
-//   models.Lyrics.all().then(function(taskList) {
-//     res.json(taskList);
-//   });
-// });
-
 // error handlers
 
 // development error handler
@@ -58,6 +52,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

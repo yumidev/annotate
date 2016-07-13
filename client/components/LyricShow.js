@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LyricHelpers from '../utils/LyricHelpers';
 
-
 class LyricShow extends Component {
   constructor() {
     super();
@@ -10,19 +9,25 @@ class LyricShow extends Component {
     };
   }
   componentWillMount() {
-    debugger;
     console.log(this);
     const lyricid = this.props.routeParams.id;
     LyricHelpers.getOneLyric(lyricid).then(function(req) {
-      console.log(req);
-      console.log(this);
+      var lyric = req.data
+      this.setState({
+        lyric:lyric
+      })
     }.bind(this));
   }
-
   render () {
+    if(!this.state.lyric) {
+      return(<div>Loading...</div>);
+    }
+    var title = this.state.lyric.title;
+    var singer = this.state.lyric.singer;
     return (
       <div>
-      <p>something</p>
+      <p>{title}</p>
+      <p>{singer}</p>
       </div>
     );
   }
@@ -33,19 +38,6 @@ LyricShow.contextTypes = {
 };
 
 export default LyricShow;
-
-// var lyrics = req.data
-// var result = [];
-// var findLyric = function (lyric) {
-//   if(lyric.title.indexOf(lyricname) > -1) {
-//     result.push(lyric)
-//   }
-// }
-// lyrics.forEach(findLyric)
-// this.setState({
-//   result:result
-// });
-
 
 // handleSubmit(e) {
 //   const searchQuery = this.state.search;

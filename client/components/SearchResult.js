@@ -55,21 +55,6 @@ class SearchResult extends Component {
 SearchResult.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
+// make the react do the validation for developers - setting the type of the Props
 
 export default SearchResult;
-
-//   const searchQuery = this.state.search;
-//   this.context.router.push( `/${this.state.search}` );
-
-// this.context.router.push( `/lyrics/{this.state.}` )
-
-
-// constructor() {
-//   super();
-//   this.state = {
-//     user: {}
-//   };
-// }
-// componentWillMount() {
-//   console.log(this);
-// }

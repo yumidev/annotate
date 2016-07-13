@@ -28,7 +28,5 @@ export default routes;
 //
 // import AddSong from '../components/AddSong';
 
-// import LyricShow from '../components/LyricShow';
 //
 // <Route path="/lyrics/new" component={AddSong} />
-// <Route path="/lyrics/:id" component={LyricShow} />
