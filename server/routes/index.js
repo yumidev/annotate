@@ -16,7 +16,19 @@ var models = require("../models");
 // })
 
 
-/* GET home page. */
+/* GET LyricShow page */
+router.get('/:id', function(req, res) {
+
+  models.Lyrics.find({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(lyric){
+    res.json(lyric)
+  });
+});
+
+/* GET LyricIndex page. */
 router.get('/', function(req, res) {
   models.Lyrics.all().then(function(taskList) {
     res.json(taskList);
