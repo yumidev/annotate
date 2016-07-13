@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 // var config = {
 //   headers: {'Acces-Control-Allow-Origin' : '*'}
 // };
@@ -9,8 +10,11 @@ import axios from 'axios';
 // 'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'}
 // }
 const LyricHelpers = {
-  getLyricData: (id) => {
+  getLyricData: (lyricname) => {
     return axios.get(`//localhost:3001/lyricdata`);
+  },
+  updateLyricData: (id) => {
+
   }
 };
 // LyricHelpers.getUserInfo("jashkenas").then(function (req) {

@@ -9,7 +9,7 @@ import ReactRouter, {
 import Main from '../components/Main';
 import Home from '../components/Home';
 import Search from '../components/Search';
-import Lyric from '../components/Lyric';
+import SearchResult from '../components/SearchResult';
 
 
 const routes = (
@@ -17,9 +17,16 @@ const routes = (
     <Route path="/" component={Main}>
       <IndexRoute component={Home} />
       <Route path="/search" component={Search} />
-      <Route path="/lyrics/:id" component={Lyric} />
+      <Route path="/:keyword" component={SearchResult} />
     </Route>
   </Router>
 );
 
 export default routes;
+//
+// import AddSong from '../components/AddSong';
+
+// import LyricShow from '../components/LyricShow';
+//
+// <Route path="/lyrics/new" component={AddSong} />
+// <Route path="/lyrics/:id" component={LyricShow} />

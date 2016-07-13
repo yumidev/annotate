@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LyricHelpers from '../utils/LyricHelpers';
 
-class Lyric extends Component {
+class SearchResult extends Component {
   constructor() {
     super();
     this.state = {
@@ -25,7 +25,6 @@ class Lyric extends Component {
         }
       }
       lyrics.forEach(findLyric)
-      // console.log(result);
       this.setState({
         result:result
       });
@@ -53,11 +52,17 @@ class Lyric extends Component {
   }
 };
 
-Lyric.contextTypes = {
+SearchResult.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
 
-export default Lyric;
+export default SearchResult;
+
+//   const searchQuery = this.state.search;
+//   this.context.router.push( `/${this.state.search}` );
+
+// this.context.router.push( `/lyrics/{this.state.}` )
+
 
 // constructor() {
 //   super();
