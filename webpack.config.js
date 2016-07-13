@@ -1,12 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + "/app/index.html",
+  template: __dirname + "/client/index.html",
   filename: "index.html",
   inject: "body"
 });
 module.exports = {
   entry: [
-    './app/index.js'
+    './client/index.js'
   ],
   output: {
     path: __dirname + "/dist",
