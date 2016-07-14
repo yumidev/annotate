@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class Search extends Component {
   constructor() {
@@ -23,6 +24,12 @@ class Search extends Component {
     console.log( this );
     return (
       <div>
+        <Link to="/">
+          <button className="button-primary"> Home </button>
+        </Link>
+        <Link to="/addlyric">
+          <button className="button-primary"> Add new lyric </button>
+        </Link>
         <h3><em>Search</em></h3>
         <input
           type="text"
