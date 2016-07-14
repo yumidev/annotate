@@ -35,23 +35,17 @@ router.get('/', function(req, res) {
   });
 });
 
-
-
-router.post('/add-task', function(req, res) {
+router.post('/', function(req, res) {
   models.Lyrics
         .build({
-            title: req.body.lyricName,
-            singer: req.body.singerName})
+            title: req.body.title,
+            singer: req.body.singer})
         .save()
-        .then(function() {
-          models.Lyrics.findAll({}).then(function(taskList) {
-                res.render('index', {tasks: taskList});
-            });
-            res.redirect("/lyrics");
-        });
+  res.end("Success Hmm?")
+
 });
 
-router.put('/task/:id', function(req, res) {
+router.put('/:id', function(req, res) {
   models.Lyrics.find({
     where: {
       id: req.params.id

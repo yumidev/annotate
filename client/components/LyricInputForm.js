@@ -18,8 +18,7 @@ class LyricInputForm extends Component {
     var artist = this.state.artist.trim();
     var content = this.state.content.trim();
     //Here we do the final submit to the parent component
-    // debugger;
-    this.props.onLyricSubmit({ title: title, artist: artist, content: content });
+    this.props.onLyricSubmit({ title: title, singer: artist });
     this.setState({
       title: '',
       artist: '',

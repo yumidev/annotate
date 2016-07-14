@@ -6,7 +6,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         singer: {
             type: DataTypes.STRING,
-            allowNull: false
         }
     }, {
        tableName: 'Lyrics'
