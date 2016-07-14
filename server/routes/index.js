@@ -26,7 +26,9 @@ router.post('/', function(req, res) {
   models.Lyrics
         .build({
             title: req.body.title,
-            artist: req.body.artist})
+            artist: req.body.artist,
+            content: req.body.content
+          })
         .save()
   res.end("Success Hmm?")
 
@@ -41,24 +43,18 @@ router.put('/:id', function(req, res) {
     if(task) {
       task.updateAttributes({
         title: req.body.title,
-        singer: req.body.singer
-      }).then(function(task) {
-        res.send(task);
-      });
+        artist: req.body.artist
+      })
     }
   });
 });
 
-
-router.delete('/task/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
   models.Lyrics.destroy({
     where: {
       id: req.params.id
     }
-  }).then(function(task) {
-    res.json(task);
-  });
+  })
 });
-
 
 module.exports = router;
