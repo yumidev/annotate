@@ -10,7 +10,7 @@ class SearchResult extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(e) {
-    const pageNumber = e.currentTarget.className
+    const pageNumber = e.currentTarget.className // Is it right way to use const??
     this.context.router.push( `/lyrics/${pageNumber}` );
   }
   componentWillMount() {

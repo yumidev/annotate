@@ -9,9 +9,9 @@ class LyricShow extends Component {
     };
   }
   componentWillMount() {
-    console.log(this);
     const lyricid = this.props.routeParams.id;
     LyricHelpers.getOneLyric(lyricid).then(function(req) {
+      debugger;
       var lyric = req.data
       this.setState({
         lyric:lyric
@@ -23,11 +23,14 @@ class LyricShow extends Component {
       return(<div>Loading...</div>);
     }
     var title = this.state.lyric.title;
-    var singer = this.state.lyric.singer;
+    var artist = this.state.lyric.artist;
     return (
       <div>
-      <p>{title}</p>
-      <p>{singer}</p>
+        <p>Title: {title}</p>
+        <p>Artist: {artist}</p>
+        <p>Lyric: {artist}</p>
+        <button type="submit"><strong>EDIT LYRIC</strong></button>
+        <button type="submit"><strong>DELETE LYRIC</strong></button>
       </div>
     );
   }

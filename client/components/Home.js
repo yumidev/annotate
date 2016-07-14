@@ -9,6 +9,9 @@ class Home extends Component {
         <Link to="/search">
           <button className="button-primary"> Search for a song </button>
         </Link>
+        <Link to="/addlyric">
+          <button className="button-primary"> Add new lyric </button>
+        </Link>
         <h1>Welcome</h1>
         <p>Hello World</p>
       </div>
