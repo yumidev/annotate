@@ -2,19 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var models = require("../models");
-// app.get("/json", function (req, res) {
-//   var lyrics= {Hi}
-//   res.json( lyrics );
-// });
-
-// router.get('/json', function(req, res) {
-//   var brother = {
-//     firstName: "Harpo",
-//     lastName: "Marx"
-//   };
-//   res.json( brother );
-// })
-
 
 /* GET LyricShow page */
 router.get('/:id', function(req, res) {
@@ -39,7 +26,7 @@ router.post('/', function(req, res) {
   models.Lyrics
         .build({
             title: req.body.title,
-            singer: req.body.singer})
+            artist: req.body.artist})
         .save()
   res.end("Success Hmm?")
 

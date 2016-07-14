@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "dev": "npm run start & webpack-dev-server --inline --hot",
-    "production": "webpack -p"
+    "production": "webpack -p",
+    "db:create": "node_modules/.bin/create_database",
+    "db:drop": "node_modules/.bin/drop_database"
   },
   "keywords": [],
   "author": "",
