@@ -26,18 +26,14 @@ class LyricInputForm extends Component {
     });
   }
   setValue(field, event) {
-    console.log(field);
-    console.log(event);
-    // debugger;
+
     //If the input fields were directly within this
     //this component, we could use this.refs.[FIELD].value
     //Instead, we want to save the data for when the form is submitted
     var object = {};
     object[field] = event.target.value;
     console.log(object);
-
     this.setState(object);
-    console.log(this);
   }
   render() {
     //Each form field is actually another component.
