@@ -12,7 +12,6 @@ class LyricInputForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit(e) {
-    //we don't want the form to submit, so we prevent the default behavior
     e.preventDefault();
     var title = this.state.title.trim();
     var artist = this.state.artist.trim();
@@ -26,7 +25,6 @@ class LyricInputForm extends Component {
     });
   }
   setValue(field, event) {
-
     //If the input fields were directly within this
     //this component, we could use this.refs.[FIELD].value
     //Instead, we want to save the data for when the form is submitted
@@ -71,7 +69,7 @@ LyricInputForm.contextTypes = {
 
 export default LyricInputForm;
 //
-// getInitialState() {
+// getInitialState() { // This one is from ES5
 //   return {
 //     title: '',
 //     artist: '',

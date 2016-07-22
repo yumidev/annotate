@@ -3,30 +3,31 @@ var router = express.Router();
 
 var models = require("../models");
 
-/* GET LyricShow page */
+
+/* GET users listing. */
 router.get('/:id', function(req, res) {
-  models.Lyrics.find({
+  models.Annotates.find({
     where: {
       id: req.params.id
     }
-  }).then(function(lyric){
-    res.json(lyric)
+  }).then(function(annotate){
+    res.json(annotate)
   });
 });
 
 /* GET LyricIndex page. */
 router.get('/', function(req, res) {
-  models.Lyrics.all().then(function(lyricList) {
-    res.json(lyricList);
+  models.Annotates.all().then(function(annotateList) {
+    res.json(annotateList);
   });
 });
 
 router.post('/', function(req, res) {
-  models.Lyrics
+  models.Annotates
         .build({
-            title: req.body.title,
-            artist: req.body.artist,
-            content: req.body.content
+            comment: req.body.comment,
+            lineNumber: req.body.lineNumber,
+            songId: req.body.songId
           })
         .save()
   res.end("Success Hmm?")
@@ -34,23 +35,23 @@ router.post('/', function(req, res) {
 });
 
 router.put('/:id', function(req, res) {
-  models.Lyrics.find({
+  models.Annotates.find({
     where: {
       id: req.params.id
     }
   }).then(function(task) {
     if(task) {
       task.updateAttributes({
-        title: req.body.title,
-        artist: req.body.artist,
-        content: req.body.content
+        comment: req.body.comment,
+        lineNumber: req.body.lineNumber,
+        songId: req.body.songId
       })
     }
   });
 });
 
 router.delete('/:id', function(req, res) {
-  models.Lyrics.destroy({
+  models.Annotates.destroy({
     where: {
       id: req.params.id
     }

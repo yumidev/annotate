@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var routes = require('./routes/index');
-// var lyrics = require('./app/models/lyrics')
+var annotates = require('./routes/annotates')
 var models = require("./models");
 
 
@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 app.use('/lyricdata', routes);
+app.use('/annotatedata', annotates)
 
 // app.use(function(req, res, next) {
 //     var err = new Error('Not Found');

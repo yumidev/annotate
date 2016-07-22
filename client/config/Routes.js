@@ -27,6 +27,5 @@ const routes = (
 );
 
 export default routes;
-//
 
-//
+// <Route path="/lyrics/:id/:annotate" component={LyricShow} />

@@ -13,7 +13,7 @@ const LyricHelpers = {
     return axios.get(`//localhost:3001/lyricdata/${lyricid}`)
   },
   addLyric: (data) => {
-    return axios.post(`//localhost:3001/lyricdata`, data).then(console.log("saved"))
+    return axios.post(`//localhost:3001/lyricdata`, data).then((response) => {console.log("Lyric saved")})
   },
   updateLyric: (id) => {
 
@@ -22,9 +22,5 @@ const LyricHelpers = {
 
   }
 };
-
-const AnnotateHelpers = {
-
-}
 
 export default LyricHelpers;

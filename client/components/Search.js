@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 class Search extends Component {
   constructor() {
     super();
-    // setInitialState
     this.state = {
       search: ''
     };
@@ -21,7 +20,6 @@ class Search extends Component {
     this.context.router.push( `/${this.state.search}` );
   }
   render(){
-    console.log( this );
     return (
       <div>
         <Link to="/">
@@ -31,12 +29,12 @@ class Search extends Component {
           <button className="button-primary"> Add new lyric </button>
         </Link>
         <h3><em>Search</em></h3>
-        <input
+        Title: <input
           type="text"
           name="search"
           value={this.state.search}
           onChange={this.updateSearch}
-          placeholder="Username: " />
+          placeholder="eg. Lemon tree " />
         <br />
         <input
           type="submit"

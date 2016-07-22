@@ -13,7 +13,7 @@ class Home extends Component {
           <button className="button-primary"> Add new lyric </button>
         </Link>
         <h1>Welcome</h1>
-        <p>Hello World</p>
+        <h4>Add Annotation to Your Favorite Song</h4>
       </div>
     );
   }

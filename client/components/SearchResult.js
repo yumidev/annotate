@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LyricHelpers from '../utils/LyricHelpers';
+import { Link } from 'react-router';
 
 class SearchResult extends Component {
   constructor() {
@@ -19,8 +20,10 @@ class SearchResult extends Component {
     LyricHelpers.getLyricData(lyricname).then(function(req) {
       var lyrics = req.data
       var result = [];
+      // debugger;
       var findLyric = function (lyric) {
-        if(lyric.title.indexOf(lyricname) > -1) {
+        var loweredTitle = lyric.title.toLowerCase();
+        if(loweredTitle.indexOf(lyricname.toLowerCase()) > -1) {
           result.push(lyric)
         }
       }
@@ -34,18 +37,26 @@ class SearchResult extends Component {
     if ( !this.state.result ) {
       return ( <div>Loading...</div> );
     }
-    var searchResult = this.state.result.map((result) => {
+    var titleResult = this.state.result.map((result) => {
       return (
         <li key={result.id} onClick={this.handleSubmit} className={result.id} >
-          {result.title}
+          <div>Title: {result.title}</div>
+          <div>Artist: {result.artist}</div>
         </li>
+
       );
     });
     return (
       <div>
+        <Link to="/">
+          <button className="button-primary"> Home </button>
+        </Link>
+        <Link to="/search">
+          <button className="button-primary"> Search for a new song </button>
+        </Link>
         <h2>Search Result</h2>
         <ul>
-          {searchResult}
+          {titleResult}
         </ul>
       </div>
     );
