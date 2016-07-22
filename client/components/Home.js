@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 import AllSong from './AllSong'
 
 class Home extends Component {
+  constructor() {
+    super();
+  }
   render () {
     return (
       // what is it that makes it happen that I can use html here? jsx??

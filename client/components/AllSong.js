@@ -9,7 +9,6 @@ class AllSong extends Component {
     };
     this.handleSelect = this.handleSelect.bind(this);
   }
-
   handleSelect(e) {
     const pageNumber = e.currentTarget.className // Is it right way to use const??
     this.context.router.push( `/lyrics/${pageNumber}` );
@@ -29,8 +28,6 @@ class AllSong extends Component {
         // names must be equal
         return 0;
       });
-
-      debugger;
       this.setState({
         allLyrics:allLyrics
       });
@@ -38,10 +35,9 @@ class AllSong extends Component {
   }
   render() {
     console.log(this);
-    debugger;
     var allLyricsList = this.state.allLyrics.map((lyric) => {
       return (
-        <li key={lyric.id} onClick={this.handleSubmit} className={lyric.id} >
+        <li key={lyric.id} onClick={this.handleSelect} className={lyric.id} >
           <div>Title: {lyric.title}</div>
           <div>Artist: {lyric.artist}</div>
         </li>
