@@ -8,9 +8,9 @@ class SearchResult extends Component {
     this.state = {
       user: {}
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
-  handleSubmit(e) {
+  handleSelect(e) {
     const pageNumber = e.currentTarget.className // Is it right way to use const??
     this.context.router.push( `/lyrics/${pageNumber}` );
   }
@@ -39,7 +39,7 @@ class SearchResult extends Component {
     }
     var titleResult = this.state.result.map((result) => {
       return (
-        <li key={result.id} onClick={this.handleSubmit} className={result.id} >
+        <li key={result.id} onClick={this.handleSelect} className={result.id} >
           <div>Title: {result.title}</div>
           <div>Artist: {result.artist}</div>
         </li>

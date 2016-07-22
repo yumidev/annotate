@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import AllSong from './AllSong'
 
 class Home extends Component {
   render () {
@@ -14,6 +15,7 @@ class Home extends Component {
         </Link>
         <h1>Welcome</h1>
         <h4>Add Annotation to Your Favorite Song</h4>
+        <AllSong />
       </div>
     );
   }

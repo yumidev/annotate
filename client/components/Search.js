@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import AllSong from './AllSong'
 
 class Search extends Component {
   constructor() {
@@ -42,7 +41,6 @@ class Search extends Component {
           className="button-primary"
           onClick={this.handleSubmit}
           value={`Search for ${this.state.search}`}  />
-        <AllSong />
       </div>
     );
   }
