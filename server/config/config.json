@@ -14,10 +14,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "iahwqodusfdepq",
-    "password": "2jDKohxxK6GkFZ5UfmDXgmR1RO",
-    "database": "d54ioqdt4s3k1b",
-    "host": "postgres://iahwqodusfdepq:2jDKohxxK6GkFZ5UfmDXgmR1RO@ec2-54-243-203-104.compute-1.amazonaws.com:5432/d54ioqdt4s3k1b",
+    "url": "postgres://iahwqodusfdepq:2jDKohxxK6GkFZ5UfmDXgmR1RO@ec2-54-243-203-104.compute-1.amazonaws.com:5432/d54ioqdt4s3k1b",
     "dialect": "postgres"
   }
 }
