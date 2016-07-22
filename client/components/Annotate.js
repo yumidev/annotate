@@ -33,7 +33,7 @@ class Annotate extends Component {
   }
   render () {
     return (
-      <form className="lyricInputForm" onSubmit={this.handleSubmit}>
+      <form className="annotateInputForm" onSubmit={this.handleSubmit}>
         <div>
           Annotate
         </div>
@@ -41,7 +41,9 @@ class Annotate extends Component {
         value={this.state.comment}
         required={true}
         onChange={this.setValue.bind(this, 'comment')} />
+        <div>
         <input type="submit" value="Submit" />
+        </div>
       </form>
     );
   }

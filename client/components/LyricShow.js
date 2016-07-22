@@ -18,28 +18,10 @@ class LyricShow extends Component {
     };
     this.showAnnotate = this.showAnnotate.bind(this);
     this.handleAnnotateSubmit = this.handleAnnotateSubmit.bind(this);
+    this.getAnnotate = this.getAnnotate.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
-  handleAnnotateSubmit (e) {
-    console.log(e);
-    var data = e
-    data['lineNumber']=this.state.currentLine.slice(0,2).trim();
-    data['songId']=this.state.songId;
-    AnnotateHelpers.addAnnotate(data).then(function(req){
-      console.log(req);
-    }.bind(this));
-  }
-  showAnnotate(e) {
-    console.log(e);
-    console.log(e.target);
-    let currentLine = e.target;
-    let currentLineClass= currentLine.getAttribute("class")
-    let songId = this.props.params.id;
-    this.setState({
-      showAnnotate: true,
-      currentLine: currentLineClass,
-      openAnnotate: true,
-      songId: songId
-    });
+  getAnnotate() {
     AnnotateHelpers.getAnnotateData().then(function(req){
       let annotates = req.data;
       let annotateResult = [];
@@ -57,6 +39,40 @@ class LyricShow extends Component {
         annotateResult: annotateResult
       });
     }.bind(this));
+  }
+  componentDidMount() {
+    //Once the component is fully loaded, we grab the donations
+    console.log("componentDidMount");
+    console.log(this);
+    // debugger;
+    this.getAnnotate();
+    //... and set an interval to continuously load new data:
+    setInterval(this.getAnnotate, 500);
+  }
+  handleAnnotateSubmit (e) {
+    e.preventDefault;
+    console.log(this);
+    console.log(e);
+    var data = e
+    data['lineNumber']=this.state.currentLine.slice(0,2).trim();
+    data['songId']=this.state.songId;
+    AnnotateHelpers.addAnnotate(data).then(function(req){
+      console.log(req);
+    }.bind(this));
+  }
+
+  showAnnotate(e) {
+    console.log(e);
+    console.log(e.target);
+    let currentLine = e.target;
+    let currentLineClass= currentLine.getAttribute("class")
+    let songId = this.props.params.id;
+    this.setState({
+      showAnnotate: true,
+      currentLine: currentLineClass,
+      openAnnotate: true,
+      songId: songId
+    });
   }
   componentWillMount() {
     const lyricid = this.props.routeParams.id;
@@ -78,7 +94,7 @@ class LyricShow extends Component {
     let openAnnotate = this.state.openAnnotate;
     let showAnnotateResult = this.state.annotateResult.map((result) => {
       return(
-        <p key={result.id} onClick={this.handleSubmit} className={result.id} >
+        <p key={result.id} className={result.id} >
           Annotation: {result.comment}
         </p>
       )

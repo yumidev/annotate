@@ -50,7 +50,7 @@ class AllSong extends Component {
           {allLyricsList}
         </ul>
       </div>
-    )
+    );
   }
 
 }
