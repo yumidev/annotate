@@ -6,13 +6,13 @@ import axios from 'axios';
 
 const AnnotateHelpers = {
   getAnnotateData: () => {
-    return axios.get(`//localhost:3001/annotatedata`);
+    return axios.get(`/annotatedata`);
   },
   getOneAnnotate: (annotateid) => {
-    return axios.get(`//localhost:3001/annotatedata/${annotateid}`)
+    return axios.get(`/annotatedata/${annotateid}`)
   },
   addAnnotate: (data) => {
-    return axios.post(`//localhost:3001/annotatedata`, data).then((response) => {console.log("Annotate saved")})
+    return axios.post(`/annotatedata`, data).then((response) => {console.log("Annotate saved")})
   },
   updateAnnotate: (id) => {
 

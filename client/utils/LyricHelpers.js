@@ -7,13 +7,13 @@ import axios from 'axios';
 
 const LyricHelpers = {
   getLyricData: () => {
-    return axios.get(`//localhost:3001/lyricdata`);
+    return axios.get(`/lyricdata`);
   },
   getOneLyric: (lyricid) => {
-    return axios.get(`//localhost:3001/lyricdata/${lyricid}`)
+    return axios.get(`/lyricdata/${lyricid}`)
   },
   addLyric: (data) => {
-    return axios.post(`//localhost:3001/lyricdata`, data).then((response) => {console.log("Lyric saved")})
+    return axios.post(`/lyricdata`, data).then((response) => {console.log("Lyric saved")})
   },
   updateLyric: (id) => {
 

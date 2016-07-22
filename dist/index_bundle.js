@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -26838,7 +26838,7 @@
 	          _react2.default.createElement(
 	            'h4',
 	            null,
-	            'Make Annotation to Your Favorite Song'
+	            'Add Annotation to Your Favorite Song'
 	          )
 	        )
 	      );
@@ -27031,8 +27031,10 @@
 	      _LyricHelpers2.default.getLyricData(lyricname).then(function (req) {
 	        var lyrics = req.data;
 	        var result = [];
+	        // debugger;
 	        var findLyric = function findLyric(lyric) {
-	          if (lyric.title.indexOf(lyricname) > -1) {
+	          var loweredTitle = lyric.title.toLowerCase();
+	          if (loweredTitle.indexOf(lyricname.toLowerCase()) > -1) {
 	            result.push(lyric);
 	          }
 	        };
@@ -27141,13 +27143,13 @@
 
 	var LyricHelpers = {
 	  getLyricData: function getLyricData() {
-	    return _axios2.default.get("//localhost:3001/lyricdata");
+	    return _axios2.default.get("/lyricdata");
 	  },
 	  getOneLyric: function getOneLyric(lyricid) {
-	    return _axios2.default.get("//localhost:3001/lyricdata/" + lyricid);
+	    return _axios2.default.get("/lyricdata/" + lyricid);
 	  },
 	  addLyric: function addLyric(data) {
-	    return _axios2.default.post("//localhost:3001/lyricdata", data).then(function (response) {
+	    return _axios2.default.post("/lyricdata", data).then(function (response) {
 	      console.log("Lyric saved");
 	    });
 	  },
@@ -28434,7 +28436,7 @@
 	    value: function handleAnnotateSubmit(e) {
 	      console.log(e);
 	      var data = e;
-	      data['lineNumber'] = this.state.currentLine[0];
+	      data['lineNumber'] = this.state.currentLine.slice(0, 2).trim();
 	      data['songId'] = this.state.songId;
 	      _AnnotateHelpers2.default.addAnnotate(data).then(function (req) {
 	        console.log(req);
@@ -28623,13 +28625,13 @@
 
 	var AnnotateHelpers = {
 	  getAnnotateData: function getAnnotateData() {
-	    return _axios2.default.get("//localhost:3001/annotatedata");
+	    return _axios2.default.get("/annotatedata");
 	  },
 	  getOneAnnotate: function getOneAnnotate(annotateid) {
-	    return _axios2.default.get("//localhost:3001/annotatedata/" + annotateid);
+	    return _axios2.default.get("/annotatedata/" + annotateid);
 	  },
 	  addAnnotate: function addAnnotate(data) {
-	    return _axios2.default.post("//localhost:3001/annotatedata", data).then(function (response) {
+	    return _axios2.default.post("/annotatedata", data).then(function (response) {
 	      console.log("Annotate saved");
 	    });
 	  },
