@@ -7,19 +7,19 @@ import axios from 'axios';
 
 const LyricHelpers = {
   getLyricData: () => {
-    return axios.get(`/lyricdata`);
+    return axios.get(`//localhost:3001/lyricdata`);
   },
   getOneLyric: (lyricid) => {
-    return axios.get(`/lyricdata/${lyricid}`)
+    return axios.get(`//localhost:3001/lyricdata/${lyricid}`)
   },
   addLyric: (data) => {
-    return axios.post(`/lyricdata`, data).then((response) => {console.log("Lyric saved")})
+    return axios.post(`//localhost:3001/lyricdata`, data).then((response) => {console.log("Lyric saved")})
   },
-  updateLyric: (id) => {
-
+  updateLyric: (lyricid) => {
+    return axios.put(`//localhost:3001/lyricdata/${lyricid}`)
   },
-  deleteLyric: (id) => {
-
+  deleteLyric: (lyricid) => {
+    return axios.delete(`//localhost:3001/lyricdata/${lyricid}`).then((response) => {console.log("Delete succeeded");})
   }
 };
 

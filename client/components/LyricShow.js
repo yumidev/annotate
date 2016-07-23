@@ -20,6 +20,21 @@ class LyricShow extends Component {
     this.handleAnnotateSubmit = this.handleAnnotateSubmit.bind(this);
     this.getAnnotate = this.getAnnotate.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.deleteLyric = this.deleteLyric.bind(this);
+  }
+  deleteAnnotate(e) {
+    console.log(e);
+    console.log("Annotate deleted");
+    var annotateid = parseInt(e.currentTarget.parentElement.className);
+    AnnotateHelpers.deleteAnnotate(annotateid).then(function(){
+    });
+  }
+  deleteLyric() {
+    console.log(this);
+    const lyricid = this.props.routeParams.id;
+    LyricHelpers.deleteLyric(lyricid).then(function(){
+    });
+    this.context.router.push( `/` );
   }
   getAnnotate() {
     AnnotateHelpers.getAnnotateData().then(function(req){
@@ -60,7 +75,6 @@ class LyricShow extends Component {
       console.log(req);
     }.bind(this));
   }
-
   showAnnotate(e) {
     console.log(e);
     console.log(e.target);
@@ -95,7 +109,7 @@ class LyricShow extends Component {
     let showAnnotateResult = this.state.annotateResult.map((result) => {
       return(
         <p key={result.id} className={result.id} >
-          Annotation: {result.comment}
+          Annotation: {result.comment} <br></br><span onClick={this.deleteAnnotate}>DELETE</span>
         </p>
       )
     })
@@ -127,6 +141,9 @@ class LyricShow extends Component {
               { line }
             </ul>
           </div>
+          <div>
+          <button type="submit" onClick={this.deleteLyric}><strong>DELETE LYRIC</strong></button>
+          </div>
         </div>
       </div>
     );
@@ -138,19 +155,3 @@ LyricShow.contextTypes = {
 };
 
 export default LyricShow;
-//
-// render() {
-//   return (
-//     <div>
-//       <Annotate />
-//     </div>
-//   );
-// }
-
-// <button type="submit"><strong>EDIT LYRIC</strong></button>
-// <button type="submit"><strong>DELETE LYRIC</strong></button>
-
-// handleSubmit(e) {
-//   const searchQuery = this.state.search;
-//   this.context.router.push( `/${this.state.search}` );
-// }
