@@ -25,6 +25,7 @@ class Search extends Component {
         <Link to="/">
           <button className="button-primary"> Home </button>
         </Link>
+        <br />
         <Link to="/addlyric">
           <button className="button-primary"> Add new lyric </button>
         </Link>

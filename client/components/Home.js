@@ -13,11 +13,12 @@ class Home extends Component {
         <Link to="/search">
           <button className="button-primary"> Search for a song </button>
         </Link>
+        <br />
         <Link to="/addlyric">
           <button className="button-primary"> Add new lyric </button>
         </Link>
-        <h1>Welcome</h1>
-        <h4>Add Annotation to Your Favorite Song</h4>
+        <h1>Annotate</h1>
+        <h4>Let me know the meaning of your song</h4>
         <AllSong />
       </div>
     );

@@ -10,7 +10,8 @@ class AllSong extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
   handleSelect(e) {
-    const pageNumber = e.currentTarget.className // Is it right way to use const??
+    console.log(e);
+    const pageNumber = parseInt(e.currentTarget.parentElement.className) // Is it right way to use const??
     this.context.router.push( `/lyrics/${pageNumber}` );
   }
   componentWillMount() {
@@ -37,16 +38,16 @@ class AllSong extends Component {
     console.log(this);
     var allLyricsList = this.state.allLyrics.map((lyric) => {
       return (
-        <li key={lyric.id} onClick={this.handleSelect} className={lyric.id} >
-          <div>Title: {lyric.title}</div>
+        <li key={lyric.id} className={lyric.id} >
+          <div onClick={this.handleSelect}>Title: {lyric.title}</div>
           <div>Artist: {lyric.artist}</div>
         </li>
       );
     });
     return (
-      <div>
+      <div style={{}}>
         <h2>All Songs</h2>
-        <ul>
+        <ul style={{ textAlign: "right", marginRight: "20%" }}>
           {allLyricsList}
         </ul>
       </div>

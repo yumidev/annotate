@@ -11,7 +11,7 @@ class SearchResult extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
   handleSelect(e) {
-    const pageNumber = e.currentTarget.className // Is it right way to use const??
+    const pageNumber = parseInt(e.currentTarget.parentElement.className) // Is it right way to use const??
     this.context.router.push( `/lyrics/${pageNumber}` );
   }
   componentWillMount() {
@@ -39,8 +39,8 @@ class SearchResult extends Component {
     }
     var titleResult = this.state.result.map((result) => {
       return (
-        <li key={result.id} onClick={this.handleSelect} className={result.id} >
-          <div>Title: {result.title}</div>
+        <li key={result.id} className={result.id} >
+          <div onClick={this.handleSelect}>Title: {result.title}</div>
           <div>Artist: {result.artist}</div>
         </li>
 
@@ -51,8 +51,13 @@ class SearchResult extends Component {
         <Link to="/">
           <button className="button-primary"> Home </button>
         </Link>
+        <br />
         <Link to="/search">
           <button className="button-primary"> Search for a new song </button>
+        </Link>
+        <br />
+        <Link to="/addlyric">
+          <button className="button-primary"> Add new lyric </button>
         </Link>
         <h2>Search Result</h2>
         <ul>

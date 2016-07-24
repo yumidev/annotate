@@ -24,13 +24,11 @@ class LyricShow extends Component {
   }
   deleteAnnotate(e) {
     console.log(e);
-    console.log("Annotate deleted");
     var annotateid = parseInt(e.currentTarget.parentElement.className);
     AnnotateHelpers.deleteAnnotate(annotateid).then(function(){
     });
   }
   deleteLyric() {
-    console.log(this);
     const lyricid = this.props.routeParams.id;
     LyricHelpers.deleteLyric(lyricid).then(function(){
     });
@@ -40,9 +38,7 @@ class LyricShow extends Component {
     AnnotateHelpers.getAnnotateData().then(function(req){
       let annotates = req.data;
       let annotateResult = [];
-      console.log(this);
       let songId = this.state.songId;
-
       let lineNumber = this.state.currentLine;
       let findAnnotates = function (annotate) {
           if(annotate.songId === parseInt(songId) && annotate.lineNumber === parseInt(lineNumber)) {
@@ -69,7 +65,8 @@ class LyricShow extends Component {
     console.log(this);
     console.log(e);
     var data = e
-    data['lineNumber']=this.state.currentLine.slice(0,2).trim();
+    var cuttingPoint = this.state.currentLine.indexOf(" ")
+    data['lineNumber']=this.state.currentLine.slice(0,cuttingPoint).trim();
     data['songId']=this.state.songId;
     AnnotateHelpers.addAnnotate(data).then(function(req){
       console.log(req);
@@ -77,7 +74,6 @@ class LyricShow extends Component {
   }
   showAnnotate(e) {
     console.log(e);
-    console.log(e.target);
     let currentLine = e.target;
     let currentLineClass= currentLine.getAttribute("class")
     let songId = this.props.params.id;
@@ -130,6 +126,7 @@ class LyricShow extends Component {
         <Link to="/">
           <button className="button-primary"> Home </button>
         </Link>
+        <br />
         <Link to="/search">
           <button className="button-primary"> Search for a song </button>
         </Link>

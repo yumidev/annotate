@@ -15,9 +15,9 @@ class LyricInput extends Component {
   }
   handleSubmit(e) {
     var data = e
-    console.log(data);
     LyricHelpers.addLyric(data).then(function(req) {
       console.log(req);
+      this.context.router.push( `/` );
     }.bind(this));
   }
   render () {
