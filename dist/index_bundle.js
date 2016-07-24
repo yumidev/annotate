@@ -21127,19 +21127,19 @@
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Search = __webpack_require__(238);
+	var _Search = __webpack_require__(259);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
-	var _SearchResult = __webpack_require__(239);
+	var _SearchResult = __webpack_require__(260);
 
 	var _SearchResult2 = _interopRequireDefault(_SearchResult);
 
-	var _LyricShow = __webpack_require__(260);
+	var _LyricShow = __webpack_require__(261);
 
 	var _LyricShow2 = _interopRequireDefault(_LyricShow);
 
-	var _LyricInput = __webpack_require__(263);
+	var _LyricInput = __webpack_require__(264);
 
 	var _LyricInput2 = _interopRequireDefault(_LyricInput);
 
@@ -26756,7 +26756,7 @@
 	      // console.log(this);
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "container" },
+	        { className: "container", style: { textAlign: "center" } },
 	        this.props.children
 	      );
 	    }
@@ -26787,6 +26787,10 @@
 
 	var _reactRouter = __webpack_require__(174);
 
+	var _AllSong = __webpack_require__(238);
+
+	var _AllSong2 = _interopRequireDefault(_AllSong);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26801,7 +26805,7 @@
 	  function Home() {
 	    _classCallCheck(this, Home);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Home).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Home).call(this));
 	  }
 
 	  _createClass(Home, [{
@@ -26821,6 +26825,7 @@
 	              ' Search for a song '
 	            )
 	          ),
+	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/addlyric' },
@@ -26833,13 +26838,14 @@
 	          _react2.default.createElement(
 	            'h1',
 	            null,
-	            'Welcome'
+	            'Annotate'
 	          ),
 	          _react2.default.createElement(
 	            'h4',
 	            null,
-	            'Add Annotation to Your Favorite Song'
-	          )
+	            'Let me know the meaning of your song'
+	          ),
+	          _react2.default.createElement(_AllSong2.default, null)
 	        )
 	      );
 	    }
@@ -26872,128 +26878,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(174);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Search = function (_Component) {
-	  _inherits(Search, _Component);
-
-	  function Search() {
-	    _classCallCheck(this, Search);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Search).call(this));
-
-	    _this.state = {
-	      search: ''
-	    };
-	    _this.updateSearch = _this.updateSearch.bind(_this);
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
-	    return _this;
-	  }
-
-	  _createClass(Search, [{
-	    key: 'updateSearch',
-	    value: function updateSearch(e) {
-	      this.setState({
-	        search: e.currentTarget.value
-	      });
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
-	      var searchQuery = this.state.search;
-	      this.context.router.push('/' + this.state.search);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'button-primary' },
-	            ' Home '
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/addlyric' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'button-primary' },
-	            ' Add new lyric '
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          _react2.default.createElement(
-	            'em',
-	            null,
-	            'Search'
-	          )
-	        ),
-	        'Title: ',
-	        _react2.default.createElement('input', {
-	          type: 'text',
-	          name: 'search',
-	          value: this.state.search,
-	          onChange: this.updateSearch,
-	          placeholder: 'eg. Lemon tree ' }),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('input', {
-	          type: 'submit',
-	          className: 'button-primary',
-	          onClick: this.handleSubmit,
-	          value: 'Search for ' + this.state.search })
-	      );
-	    }
-	  }]);
-
-	  return Search;
-	}(_react.Component);
-
-	;
-
-	Search.contextTypes = {
-	  router: _react2.default.PropTypes.object.isRequired
-	};
-
-	exports.default = Search;
-
-/***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _LyricHelpers = __webpack_require__(240);
+	var _LyricHelpers = __webpack_require__(239);
 
 	var _LyricHelpers2 = _interopRequireDefault(_LyricHelpers);
 
-	var _reactRouter = __webpack_require__(174);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27002,45 +26890,47 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var SearchResult = function (_Component) {
-	  _inherits(SearchResult, _Component);
+	var AllSong = function (_Component) {
+	  _inherits(AllSong, _Component);
 
-	  function SearchResult() {
-	    _classCallCheck(this, SearchResult);
+	  function AllSong() {
+	    _classCallCheck(this, AllSong);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SearchResult).call(this));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AllSong).call(this));
 
 	    _this.state = {
-	      user: {}
+	      allLyrics: []
 	    };
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    _this.handleSelect = _this.handleSelect.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(SearchResult, [{
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
-	      var pageNumber = e.currentTarget.className; // Is it right way to use const??
+	  _createClass(AllSong, [{
+	    key: 'handleSelect',
+	    value: function handleSelect(e) {
+	      console.log(e);
+	      var pageNumber = parseInt(e.currentTarget.parentElement.className); // Is it right way to use const??
 	      this.context.router.push('/lyrics/' + pageNumber);
 	    }
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      // console.log(this);
-	      var lyricname = this.props.routeParams.keyword;
-	      _LyricHelpers2.default.getLyricData(lyricname).then(function (req) {
-	        var lyrics = req.data;
-	        var result = [];
-	        // debugger;
-	        var findLyric = function findLyric(lyric) {
-	          var loweredTitle = lyric.title.toLowerCase();
-	          if (loweredTitle.indexOf(lyricname.toLowerCase()) > -1) {
-	            result.push(lyric);
+	      _LyricHelpers2.default.getLyricData().then(function (req) {
+	        var allLyrics = req.data;
+	        allLyrics = allLyrics.sort(function (a, b) {
+	          var titleA = a.title.toUpperCase(); // ignore upper and lowercase
+	          var titleB = b.title.toUpperCase(); // ignore upper and lowercase
+	          if (titleA < titleB) {
+	            return -1;
 	          }
-	        };
-	        lyrics.forEach(findLyric);
+	          if (titleA > titleB) {
+	            return 1;
+	          }
+	          // names must be equal
+	          return 0;
+	        });
 	        this.setState({
-	          result: result
+	          allLyrics: allLyrics
 	        });
 	      }.bind(this));
 	    }
@@ -27049,80 +26939,54 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      if (!this.state.result) {
-	        return _react2.default.createElement(
-	          'div',
-	          null,
-	          'Loading...'
-	        );
-	      }
-	      var titleResult = this.state.result.map(function (result) {
+	      console.log(this);
+	      var allLyricsList = this.state.allLyrics.map(function (lyric) {
 	        return _react2.default.createElement(
 	          'li',
-	          { key: result.id, onClick: _this2.handleSubmit, className: result.id },
+	          { key: lyric.id, className: lyric.id },
 	          _react2.default.createElement(
 	            'div',
-	            null,
+	            { onClick: _this2.handleSelect },
 	            'Title: ',
-	            result.title
+	            lyric.title
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            null,
 	            'Artist: ',
-	            result.artist
+	            lyric.artist
 	          )
 	        );
 	      });
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'button-primary' },
-	            ' Home '
-	          )
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/search' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'button-primary' },
-	            ' Search for a new song '
-	          )
-	        ),
+	        { style: {} },
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          'Search Result'
+	          'All Songs'
 	        ),
 	        _react2.default.createElement(
 	          'ul',
-	          null,
-	          titleResult
+	          { style: { textAlign: "right", marginRight: "20%" } },
+	          allLyricsList
 	        )
 	      );
 	    }
 	  }]);
 
-	  return SearchResult;
+	  return AllSong;
 	}(_react.Component);
 
-	;
-
-	SearchResult.contextTypes = {
+	AllSong.contextTypes = {
 	  router: _react2.default.PropTypes.object.isRequired
 	};
 	// make the react do the validation for developers - setting the type of the Props
 
-	exports.default = SearchResult;
+	exports.default = AllSong;
 
 /***/ },
-/* 240 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27131,7 +26995,7 @@
 	  value: true
 	});
 
-	var _axios = __webpack_require__(241);
+	var _axios = __webpack_require__(240);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
@@ -27153,32 +27017,38 @@
 	      console.log("Lyric saved");
 	    });
 	  },
-	  updateLyric: function updateLyric(id) {},
-	  deleteLyric: function deleteLyric(id) {}
+	  updateLyric: function updateLyric(lyricid) {
+	    return _axios2.default.put("/lyricdata/" + lyricid);
+	  },
+	  deleteLyric: function deleteLyric(lyricid) {
+	    return _axios2.default.delete("/lyricdata/" + lyricid).then(function (response) {
+	      console.log("Delete succeeded");
+	    });
+	  }
 	};
 
 	exports.default = LyricHelpers;
 
 /***/ },
-/* 241 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(242);
+	module.exports = __webpack_require__(241);
 
 /***/ },
-/* 242 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(243);
-	var utils = __webpack_require__(244);
-	var dispatchRequest = __webpack_require__(246);
-	var InterceptorManager = __webpack_require__(255);
-	var isAbsoluteURL = __webpack_require__(256);
-	var combineURLs = __webpack_require__(257);
-	var bind = __webpack_require__(258);
-	var transformData = __webpack_require__(250);
+	var defaults = __webpack_require__(242);
+	var utils = __webpack_require__(243);
+	var dispatchRequest = __webpack_require__(245);
+	var InterceptorManager = __webpack_require__(254);
+	var isAbsoluteURL = __webpack_require__(255);
+	var combineURLs = __webpack_require__(256);
+	var bind = __webpack_require__(257);
+	var transformData = __webpack_require__(249);
 
 	function Axios(defaultConfig) {
 	  this.defaults = utils.merge({}, defaultConfig);
@@ -27267,7 +27137,7 @@
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(259);
+	axios.spread = __webpack_require__(258);
 
 	// Provide aliases for supported request methods
 	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
@@ -27295,13 +27165,13 @@
 
 
 /***/ },
-/* 243 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
-	var normalizeHeaderName = __webpack_require__(245);
+	var utils = __webpack_require__(243);
+	var normalizeHeaderName = __webpack_require__(244);
 
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -27373,7 +27243,7 @@
 
 
 /***/ },
-/* 244 */
+/* 243 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27656,12 +27526,12 @@
 
 
 /***/ },
-/* 245 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
+	var utils = __webpack_require__(243);
 
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -27674,7 +27544,7 @@
 
 
 /***/ },
-/* 246 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -27696,10 +27566,10 @@
 	        adapter = config.adapter;
 	      } else if (typeof XMLHttpRequest !== 'undefined') {
 	        // For browsers use XHR adapter
-	        adapter = __webpack_require__(247);
+	        adapter = __webpack_require__(246);
 	      } else if (typeof process !== 'undefined') {
 	        // For node use HTTP adapter
-	        adapter = __webpack_require__(247);
+	        adapter = __webpack_require__(246);
 	      }
 
 	      if (typeof adapter === 'function') {
@@ -27715,18 +27585,18 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 247 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
-	var utils = __webpack_require__(244);
-	var buildURL = __webpack_require__(248);
-	var parseHeaders = __webpack_require__(249);
-	var transformData = __webpack_require__(250);
-	var isURLSameOrigin = __webpack_require__(251);
-	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(252);
-	var settle = __webpack_require__(253);
+	var utils = __webpack_require__(243);
+	var buildURL = __webpack_require__(247);
+	var parseHeaders = __webpack_require__(248);
+	var transformData = __webpack_require__(249);
+	var isURLSameOrigin = __webpack_require__(250);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(251);
+	var settle = __webpack_require__(252);
 
 	module.exports = function xhrAdapter(resolve, reject, config) {
 	  var requestData = config.data;
@@ -27823,7 +27693,7 @@
 	  // This is only done if running in a standard browser environment.
 	  // Specifically not if we're in a web worker, or react-native.
 	  if (utils.isStandardBrowserEnv()) {
-	    var cookies = __webpack_require__(254);
+	    var cookies = __webpack_require__(253);
 
 	    // Add xsrf header
 	    var xsrfValue = config.withCredentials || isURLSameOrigin(config.url) ?
@@ -27884,12 +27754,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 248 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
+	var utils = __webpack_require__(243);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -27958,12 +27828,12 @@
 
 
 /***/ },
-/* 249 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
+	var utils = __webpack_require__(243);
 
 	/**
 	 * Parse headers into an object
@@ -28001,12 +27871,12 @@
 
 
 /***/ },
-/* 250 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
+	var utils = __webpack_require__(243);
 
 	/**
 	 * Transform the data for a request or a response
@@ -28027,12 +27897,12 @@
 
 
 /***/ },
-/* 251 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
+	var utils = __webpack_require__(243);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -28101,7 +27971,7 @@
 
 
 /***/ },
-/* 252 */
+/* 251 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28143,7 +28013,7 @@
 
 
 /***/ },
-/* 253 */
+/* 252 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28167,12 +28037,12 @@
 
 
 /***/ },
-/* 254 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
+	var utils = __webpack_require__(243);
 
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -28226,12 +28096,12 @@
 
 
 /***/ },
-/* 255 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(244);
+	var utils = __webpack_require__(243);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -28284,7 +28154,7 @@
 
 
 /***/ },
-/* 256 */
+/* 255 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28304,7 +28174,7 @@
 
 
 /***/ },
-/* 257 */
+/* 256 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28322,7 +28192,7 @@
 
 
 /***/ },
-/* 258 */
+/* 257 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28339,7 +28209,7 @@
 
 
 /***/ },
-/* 259 */
+/* 258 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28372,7 +28242,7 @@
 
 
 /***/ },
-/* 260 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28389,15 +28259,292 @@
 
 	var _reactRouter = __webpack_require__(174);
 
-	var _LyricHelpers = __webpack_require__(240);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Search = function (_Component) {
+	  _inherits(Search, _Component);
+
+	  function Search() {
+	    _classCallCheck(this, Search);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Search).call(this));
+
+	    _this.state = {
+	      search: ''
+	    };
+	    _this.updateSearch = _this.updateSearch.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Search, [{
+	    key: 'updateSearch',
+	    value: function updateSearch(e) {
+	      this.setState({
+	        search: e.currentTarget.value
+	      });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      var searchQuery = this.state.search;
+	      this.context.router.push('/' + this.state.search);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button-primary' },
+	            ' Home '
+	          )
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addlyric' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button-primary' },
+	            ' Add new lyric '
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          _react2.default.createElement(
+	            'em',
+	            null,
+	            'Search'
+	          )
+	        ),
+	        'Title: ',
+	        _react2.default.createElement('input', {
+	          type: 'text',
+	          name: 'search',
+	          value: this.state.search,
+	          onChange: this.updateSearch,
+	          placeholder: 'eg. Lemon tree ' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', {
+	          type: 'submit',
+	          className: 'button-primary',
+	          onClick: this.handleSubmit,
+	          value: 'Search for ' + this.state.search })
+	      );
+	    }
+	  }]);
+
+	  return Search;
+	}(_react.Component);
+
+	;
+
+	Search.contextTypes = {
+	  router: _react2.default.PropTypes.object.isRequired
+	};
+
+	exports.default = Search;
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _LyricHelpers = __webpack_require__(239);
 
 	var _LyricHelpers2 = _interopRequireDefault(_LyricHelpers);
 
-	var _AnnotateHelpers = __webpack_require__(261);
+	var _reactRouter = __webpack_require__(174);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SearchResult = function (_Component) {
+	  _inherits(SearchResult, _Component);
+
+	  function SearchResult() {
+	    _classCallCheck(this, SearchResult);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SearchResult).call(this));
+
+	    _this.state = {
+	      user: {}
+	    };
+	    _this.handleSelect = _this.handleSelect.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(SearchResult, [{
+	    key: 'handleSelect',
+	    value: function handleSelect(e) {
+	      var pageNumber = parseInt(e.currentTarget.parentElement.className); // Is it right way to use const??
+	      this.context.router.push('/lyrics/' + pageNumber);
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      // console.log(this);
+	      var lyricname = this.props.routeParams.keyword;
+	      _LyricHelpers2.default.getLyricData(lyricname).then(function (req) {
+	        var lyrics = req.data;
+	        var result = [];
+	        // debugger;
+	        var findLyric = function findLyric(lyric) {
+	          var loweredTitle = lyric.title.toLowerCase();
+	          if (loweredTitle.indexOf(lyricname.toLowerCase()) > -1) {
+	            result.push(lyric);
+	          }
+	        };
+	        lyrics.forEach(findLyric);
+	        this.setState({
+	          result: result
+	        });
+	      }.bind(this));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      if (!this.state.result) {
+	        return _react2.default.createElement(
+	          'div',
+	          null,
+	          'Loading...'
+	        );
+	      }
+	      var titleResult = this.state.result.map(function (result) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: result.id, className: result.id },
+	          _react2.default.createElement(
+	            'div',
+	            { onClick: _this2.handleSelect },
+	            'Title: ',
+	            result.title
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Artist: ',
+	            result.artist
+	          )
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button-primary' },
+	            ' Home '
+	          )
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/search' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button-primary' },
+	            ' Search for a new song '
+	          )
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addlyric' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button-primary' },
+	            ' Add new lyric '
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Search Result'
+	        ),
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          titleResult
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SearchResult;
+	}(_react.Component);
+
+	;
+
+	SearchResult.contextTypes = {
+	  router: _react2.default.PropTypes.object.isRequired
+	};
+	// make the react do the validation for developers - setting the type of the Props
+
+	exports.default = SearchResult;
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(174);
+
+	var _LyricHelpers = __webpack_require__(239);
+
+	var _LyricHelpers2 = _interopRequireDefault(_LyricHelpers);
+
+	var _AnnotateHelpers = __webpack_require__(262);
 
 	var _AnnotateHelpers2 = _interopRequireDefault(_AnnotateHelpers);
 
-	var _Annotate = __webpack_require__(262);
+	var _Annotate = __webpack_require__(263);
 
 	var _Annotate2 = _interopRequireDefault(_Annotate);
 
@@ -28428,40 +28575,33 @@
 	    };
 	    _this.showAnnotate = _this.showAnnotate.bind(_this);
 	    _this.handleAnnotateSubmit = _this.handleAnnotateSubmit.bind(_this);
+	    _this.getAnnotate = _this.getAnnotate.bind(_this);
+	    _this.componentDidMount = _this.componentDidMount.bind(_this);
+	    _this.deleteLyric = _this.deleteLyric.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(LyricShow, [{
-	    key: 'handleAnnotateSubmit',
-	    value: function handleAnnotateSubmit(e) {
+	    key: 'deleteAnnotate',
+	    value: function deleteAnnotate(e) {
 	      console.log(e);
-	      var data = e;
-	      data['lineNumber'] = this.state.currentLine.slice(0, 2).trim();
-	      data['songId'] = this.state.songId;
-	      _AnnotateHelpers2.default.addAnnotate(data).then(function (req) {
-	        console.log(req);
-	      }.bind(this));
+	      var annotateid = parseInt(e.currentTarget.parentElement.className);
+	      _AnnotateHelpers2.default.deleteAnnotate(annotateid).then(function () {});
 	    }
 	  }, {
-	    key: 'showAnnotate',
-	    value: function showAnnotate(e) {
-	      console.log(e);
-	      console.log(e.target);
-	      var currentLine = e.target;
-	      var currentLineClass = currentLine.getAttribute("class");
-	      var songId = this.props.params.id;
-	      this.setState({
-	        showAnnotate: true,
-	        currentLine: currentLineClass,
-	        openAnnotate: true,
-	        songId: songId
-	      });
+	    key: 'deleteLyric',
+	    value: function deleteLyric() {
+	      var lyricid = this.props.routeParams.id;
+	      _LyricHelpers2.default.deleteLyric(lyricid).then(function () {});
+	      this.context.router.push('/');
+	    }
+	  }, {
+	    key: 'getAnnotate',
+	    value: function getAnnotate() {
 	      _AnnotateHelpers2.default.getAnnotateData().then(function (req) {
 	        var annotates = req.data;
 	        var annotateResult = [];
-	        console.log(this);
 	        var songId = this.state.songId;
-
 	        var lineNumber = this.state.currentLine;
 	        var findAnnotates = function findAnnotates(annotate) {
 	          if (annotate.songId === parseInt(songId) && annotate.lineNumber === parseInt(lineNumber)) {
@@ -28473,6 +28613,45 @@
 	          annotateResult: annotateResult
 	        });
 	      }.bind(this));
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      //Once the component is fully loaded, we grab the donations
+	      console.log("componentDidMount");
+	      console.log(this);
+	      // debugger;
+	      this.getAnnotate();
+	      //... and set an interval to continuously load new data:
+	      setInterval(this.getAnnotate, 500);
+	    }
+	  }, {
+	    key: 'handleAnnotateSubmit',
+	    value: function handleAnnotateSubmit(e) {
+	      e.preventDefault;
+	      console.log(this);
+	      console.log(e);
+	      var data = e;
+	      var cuttingPoint = this.state.currentLine.indexOf(" ");
+	      data['lineNumber'] = this.state.currentLine.slice(0, cuttingPoint).trim();
+	      data['songId'] = this.state.songId;
+	      _AnnotateHelpers2.default.addAnnotate(data).then(function (req) {
+	        console.log(req);
+	      }.bind(this));
+	    }
+	  }, {
+	    key: 'showAnnotate',
+	    value: function showAnnotate(e) {
+	      console.log(e);
+	      var currentLine = e.target;
+	      var currentLineClass = currentLine.getAttribute("class");
+	      var songId = this.props.params.id;
+	      this.setState({
+	        showAnnotate: true,
+	        currentLine: currentLineClass,
+	        openAnnotate: true,
+	        songId: songId
+	      });
 	    }
 	  }, {
 	    key: 'componentWillMount',
@@ -28505,9 +28684,16 @@
 	      var showAnnotateResult = this.state.annotateResult.map(function (result) {
 	        return _react2.default.createElement(
 	          'p',
-	          { key: result.id, onClick: _this2.handleSubmit, className: result.id },
+	          { key: result.id, className: result.id },
 	          'Annotation: ',
-	          result.comment
+	          result.comment,
+	          ' ',
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'span',
+	            { onClick: _this2.deleteAnnotate },
+	            'DELETE'
+	          )
 	        );
 	      });
 
@@ -28538,6 +28724,7 @@
 	            ' Home '
 	          )
 	        ),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
 	          { to: '/search' },
@@ -28570,6 +28757,19 @@
 	              null,
 	              line
 	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit', onClick: this.deleteLyric },
+	              _react2.default.createElement(
+	                'strong',
+	                null,
+	                'DELETE LYRIC'
+	              )
+	            )
 	          )
 	        )
 	      );
@@ -28586,25 +28786,9 @@
 	};
 
 	exports.default = LyricShow;
-	//
-	// render() {
-	//   return (
-	//     <div>
-	//       <Annotate />
-	//     </div>
-	//   );
-	// }
-
-	// <button type="submit"><strong>EDIT LYRIC</strong></button>
-	// <button type="submit"><strong>DELETE LYRIC</strong></button>
-
-	// handleSubmit(e) {
-	//   const searchQuery = this.state.search;
-	//   this.context.router.push( `/${this.state.search}` );
-	// }
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28613,7 +28797,7 @@
 	  value: true
 	});
 
-	var _axios = __webpack_require__(241);
+	var _axios = __webpack_require__(240);
 
 	var _axios2 = _interopRequireDefault(_axios);
 
@@ -28635,14 +28819,18 @@
 	      console.log("Annotate saved");
 	    });
 	  },
-	  updateAnnotate: function updateAnnotate(id) {},
-	  deleteAnnotate: function deleteAnnotate(id) {}
+	  updateAnnotate: function updateAnnotate(annotateid) {
+	    return _axios2.default.put("/annotatedata/" + annotateid);
+	  },
+	  deleteAnnotate: function deleteAnnotate(annotateid) {
+	    return _axios2.default.delete("/annotatedata/" + annotateid);
+	  }
 	};
 
 	exports.default = AnnotateHelpers;
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28659,7 +28847,7 @@
 
 	var _reactRouter = __webpack_require__(174);
 
-	var _LyricShow = __webpack_require__(260);
+	var _LyricShow = __webpack_require__(261);
 
 	var _LyricShow2 = _interopRequireDefault(_LyricShow);
 
@@ -28715,7 +28903,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'form',
-	        { className: 'lyricInputForm', onSubmit: this.handleSubmit },
+	        { className: 'annotateInputForm', onSubmit: this.handleSubmit },
 	        _react2.default.createElement(
 	          'div',
 	          null,
@@ -28725,7 +28913,11 @@
 	          value: this.state.comment,
 	          required: true,
 	          onChange: this.setValue.bind(this, 'comment') }),
-	        _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+	        )
 	      );
 	    }
 	  }]);
@@ -28742,7 +28934,7 @@
 	exports.default = Annotate;
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28759,11 +28951,11 @@
 
 	var _reactRouter = __webpack_require__(174);
 
-	var _LyricHelpers = __webpack_require__(240);
+	var _LyricHelpers = __webpack_require__(239);
 
 	var _LyricHelpers2 = _interopRequireDefault(_LyricHelpers);
 
-	var _LyricInputForm = __webpack_require__(264);
+	var _LyricInputForm = __webpack_require__(265);
 
 	var _LyricInputForm2 = _interopRequireDefault(_LyricInputForm);
 
@@ -28796,9 +28988,9 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      var data = e;
-	      console.log(data);
 	      _LyricHelpers2.default.addLyric(data).then(function (req) {
 	        console.log(req);
+	        this.context.router.push('/');
 	      }.bind(this));
 	    }
 	  }, {
@@ -28847,7 +29039,7 @@
 	exports.default = LyricInput;
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28862,7 +29054,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _LyricHelpers = __webpack_require__(240);
+	var _LyricHelpers = __webpack_require__(239);
 
 	var _LyricHelpers2 = _interopRequireDefault(_LyricHelpers);
 
