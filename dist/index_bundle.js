@@ -26753,7 +26753,6 @@
 	  _createClass(Main, [{
 	    key: "render",
 	    value: function render() {
-	      // console.log(this);
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "container", style: { textAlign: "center" } },
@@ -26908,8 +26907,7 @@
 	  _createClass(AllSong, [{
 	    key: 'handleSelect',
 	    value: function handleSelect(e) {
-	      console.log(e);
-	      var pageNumber = parseInt(e.currentTarget.parentElement.className); // Is it right way to use const??
+	      var pageNumber = parseInt(e.currentTarget.parentElement.className);
 	      this.context.router.push('/lyrics/' + pageNumber);
 	    }
 	  }, {
@@ -26919,7 +26917,7 @@
 	        var allLyrics = req.data;
 	        allLyrics = allLyrics.sort(function (a, b) {
 	          var titleA = a.title.toUpperCase(); // ignore upper and lowercase
-	          var titleB = b.title.toUpperCase(); // ignore upper and lowercase
+	          var titleB = b.title.toUpperCase();
 	          if (titleA < titleB) {
 	            return -1;
 	          }
@@ -26939,7 +26937,6 @@
 	    value: function render() {
 	      var _this2 = this;
 
-	      console.log(this);
 	      var allLyricsList = this.state.allLyrics.map(function (lyric) {
 	        return _react2.default.createElement(
 	          'li',
@@ -26989,7 +26986,7 @@
 /* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -27007,23 +27004,19 @@
 
 	var LyricHelpers = {
 	  getLyricData: function getLyricData() {
-	    return _axios2.default.get("/lyricdata");
+	    return _axios2.default.get('/lyricdata');
 	  },
 	  getOneLyric: function getOneLyric(lyricid) {
-	    return _axios2.default.get("/lyricdata/" + lyricid);
+	    return _axios2.default.get('/lyricdata/' + lyricid);
 	  },
 	  addLyric: function addLyric(data) {
-	    return _axios2.default.post("/lyricdata", data).then(function (response) {
-	      console.log("Lyric saved");
-	    });
+	    return _axios2.default.post('/lyricdata', data);
 	  },
 	  updateLyric: function updateLyric(lyricid) {
-	    return _axios2.default.put("/lyricdata/" + lyricid);
+	    return _axios2.default.put('/lyricdata/' + lyricid);
 	  },
 	  deleteLyric: function deleteLyric(lyricid) {
-	    return _axios2.default.delete("/lyricdata/" + lyricid).then(function (response) {
-	      console.log("Delete succeeded");
-	    });
+	    return _axios2.default.delete('/lyricdata/' + lyricid);
 	  }
 	};
 
@@ -28412,12 +28405,10 @@
 	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      // console.log(this);
 	      var lyricname = this.props.routeParams.keyword;
 	      _LyricHelpers2.default.getLyricData(lyricname).then(function (req) {
 	        var lyrics = req.data;
 	        var result = [];
-	        // debugger;
 	        var findLyric = function findLyric(lyric) {
 	          var loweredTitle = lyric.title.toLowerCase();
 	          if (loweredTitle.indexOf(lyricname.toLowerCase()) > -1) {
@@ -28585,7 +28576,6 @@
 	  _createClass(LyricShow, [{
 	    key: 'deleteAnnotate',
 	    value: function deleteAnnotate(e) {
-	      console.log(e);
 	      var annotateid = parseInt(e.currentTarget.parentElement.className);
 	      _AnnotateHelpers2.default.deleteAnnotate(annotateid).then(function () {});
 	    }
@@ -28620,7 +28610,6 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      //Once the component is fully loaded, we grab the annotations,
-	      console.log("componentDidMount");
 	      this.getAnnotate();
 	      //... and set an interval to continuously load new data:
 	      this.timer = setInterval(this.getAnnotate, 500);
@@ -28637,14 +28626,11 @@
 	      var data = e;
 	      data['lineNumber'] = this.state.currentLine;
 	      data['songId'] = this.state.songId;
-	      _AnnotateHelpers2.default.addAnnotate(data).then(function (req) {
-	        console.log(req);
-	      }.bind(this));
+	      _AnnotateHelpers2.default.addAnnotate(data).then(function (req) {}.bind(this));
 	    }
 	  }, {
 	    key: 'showAnnotate',
 	    value: function showAnnotate(e) {
-	      console.log(e);
 	      var currentLine = parseInt(e.target.dataset.line);
 	      var songId = this.props.params.id;
 	      this.setState({
@@ -28795,7 +28781,7 @@
 /* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -28813,21 +28799,19 @@
 
 	var AnnotateHelpers = {
 	  getAnnotateData: function getAnnotateData() {
-	    return _axios2.default.get("/annotatedata");
+	    return _axios2.default.get('/annotatedata');
 	  },
 	  getOneAnnotate: function getOneAnnotate(annotateid) {
-	    return _axios2.default.get("/annotatedata/" + annotateid);
+	    return _axios2.default.get('/annotatedata/' + annotateid);
 	  },
 	  addAnnotate: function addAnnotate(data) {
-	    return _axios2.default.post("/annotatedata", data).then(function (response) {
-	      console.log("Annotate saved");
-	    });
+	    return _axios2.default.post('/annotatedata', data);
 	  },
 	  updateAnnotate: function updateAnnotate(annotateid) {
-	    return _axios2.default.put("/annotatedata/" + annotateid);
+	    return _axios2.default.put('/annotatedata/' + annotateid);
 	  },
 	  deleteAnnotate: function deleteAnnotate(annotateid) {
-	    return _axios2.default.delete("/annotatedata/" + annotateid);
+	    return _axios2.default.delete('/annotatedata/' + annotateid);
 	  }
 	};
 
@@ -28871,8 +28855,6 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Annotate).call(this));
 
-	    console.log("Initial this");
-	    console.log(_this);
 	    _this.state = {
 	      comment: ''
 	    };
@@ -28883,8 +28865,6 @@
 	  _createClass(Annotate, [{
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
-	      console.log(e);
-	      console.log(this);
 	      var comment = this.state.comment.trim();
 	      this.props.onAnnotateSubmit({ comment: comment });
 	      this.setState({
@@ -28899,7 +28879,6 @@
 	      //Instead, we want to save the data for when the form is submitted
 	      var object = {};
 	      object[field] = event.target.value;
-	      console.log(object);
 	      this.setState(object);
 	    }
 	  }, {
@@ -28993,7 +28972,6 @@
 	    value: function handleSubmit(e) {
 	      var data = e;
 	      _LyricHelpers2.default.addLyric(data).then(function (req) {
-	        console.log(req);
 	        this.context.router.push('/');
 	      }.bind(this));
 	    }
@@ -29110,7 +29088,6 @@
 	      //Instead, we want to save the data for when the form is submitted
 	      var object = {};
 	      object[field] = event.target.value;
-	      console.log(object);
 	      this.setState(object);
 	    }
 	  }, {

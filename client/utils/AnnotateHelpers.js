@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-// router.post('/addlyric', function(req, res) {
-//   router.put('/:id', function(req, res) {
-//     router.delete('/:id', function(req, res) {
-
 const AnnotateHelpers = {
   getAnnotateData: () => {
     return axios.get(`/annotatedata`);
@@ -12,7 +8,7 @@ const AnnotateHelpers = {
     return axios.get(`/annotatedata/${annotateid}`)
   },
   addAnnotate: (data) => {
-    return axios.post(`/annotatedata`, data).then((response) => {console.log("Annotate saved")})
+    return axios.post(`/annotatedata`, data)
   },
   updateAnnotate: (annotateid) => {
     return axios.put(`/annotatedata/${annotateid}`)

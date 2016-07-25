@@ -10,8 +10,7 @@ class AllSong extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
   handleSelect(e) {
-    console.log(e);
-    const pageNumber = parseInt(e.currentTarget.parentElement.className) // Is it right way to use const??
+    const pageNumber = parseInt(e.currentTarget.parentElement.className)
     this.context.router.push( `/lyrics/${pageNumber}` );
   }
   componentWillMount() {
@@ -19,7 +18,7 @@ class AllSong extends Component {
       var allLyrics = req.data
       allLyrics = allLyrics.sort(function(a, b){
         var titleA = a.title.toUpperCase(); // ignore upper and lowercase
-        var titleB = b.title.toUpperCase(); // ignore upper and lowercase
+        var titleB = b.title.toUpperCase();
         if (titleA < titleB) {
           return -1;
         }
@@ -35,7 +34,6 @@ class AllSong extends Component {
     }.bind(this));
   }
   render() {
-    console.log(this);
     var allLyricsList = this.state.allLyrics.map((lyric) => {
       return (
         <li key={lyric.id} className={lyric.id} >

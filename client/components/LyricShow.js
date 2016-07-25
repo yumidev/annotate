@@ -24,7 +24,6 @@ class LyricShow extends Component {
     this.deleteLyric = this.deleteLyric.bind(this);
   }
   deleteAnnotate(e) {
-    console.log(e);
     var annotateid = parseInt(e.currentTarget.parentElement.className);
     AnnotateHelpers.deleteAnnotate(annotateid).then(function(){
     });
@@ -55,7 +54,6 @@ class LyricShow extends Component {
   }
   componentDidMount() {
     //Once the component is fully loaded, we grab the annotations,
-    console.log("componentDidMount");
     this.getAnnotate();
     //... and set an interval to continuously load new data:
     this.timer = setInterval(this.getAnnotate, 500);
@@ -69,11 +67,9 @@ class LyricShow extends Component {
     data['lineNumber'] = this.state.currentLine;
     data['songId'] = this.state.songId;
     AnnotateHelpers.addAnnotate(data).then(function(req){
-      console.log(req);
     }.bind(this));
   }
   showAnnotate(e) {
-    console.log(e);
     let currentLine = parseInt(e.target.dataset.line);
     let songId = this.props.params.id;
     this.setState({

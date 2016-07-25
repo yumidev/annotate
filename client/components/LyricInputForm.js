@@ -25,17 +25,11 @@ class LyricInputForm extends Component {
     });
   }
   setValue(field, event) {
-    //If the input fields were directly within this
-    //this component, we could use this.refs.[FIELD].value
-    //Instead, we want to save the data for when the form is submitted
     var object = {};
     object[field] = event.target.value;
-    console.log(object);
     this.setState(object);
   }
   render() {
-    //Each form field is actually another component.
-    //Two of the form fields use the same component, but with different variables
     return (
       <form className="lyricInputForm" onSubmit={this.handleSubmit}>
         <div>
@@ -68,11 +62,3 @@ LyricInputForm.contextTypes = {
 };
 
 export default LyricInputForm;
-//
-// getInitialState() { // This one is from ES5
-//   return {
-//     title: '',
-//     artist: '',
-//     content: ''
-//   };
-// }

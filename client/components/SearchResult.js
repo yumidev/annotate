@@ -11,16 +11,14 @@ class SearchResult extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
   handleSelect(e) {
-    const pageNumber = parseInt(e.currentTarget.parentElement.className) // Is it right way to use const??
+    const pageNumber = parseInt(e.currentTarget.parentElement.className)
     this.context.router.push( `/lyrics/${pageNumber}` );
   }
   componentWillMount() {
-    // console.log(this);
     const lyricname = this.props.routeParams.keyword;
     LyricHelpers.getLyricData(lyricname).then(function(req) {
       var lyrics = req.data
       var result = [];
-      // debugger;
       var findLyric = function (lyric) {
         var loweredTitle = lyric.title.toLowerCase();
         if(loweredTitle.indexOf(lyricname.toLowerCase()) > -1) {
