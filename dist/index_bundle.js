@@ -28623,7 +28623,12 @@
 	      console.log("componentDidMount");
 	      this.getAnnotate();
 	      //... and set an interval to continuously load new data:
-	      setInterval(this.getAnnotate, 500);
+	      this.timer = setInterval(this.getAnnotate, 500);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearInterval(this.timer);
 	    }
 	  }, {
 	    key: 'handleAnnotateSubmit',

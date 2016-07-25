@@ -58,7 +58,10 @@ class LyricShow extends Component {
     console.log("componentDidMount");
     this.getAnnotate();
     //... and set an interval to continuously load new data:
-    setInterval(this.getAnnotate, 500);
+    this.timer = setInterval(this.getAnnotate, 500);
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
   handleAnnotateSubmit (e) {
     e.preventDefault;
