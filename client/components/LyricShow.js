@@ -10,11 +10,12 @@ class LyricShow extends Component {
     this.state = {
       user: {},
       showAnnotate: false,
-      currentLine: '',
+      currentLine: null,
       openAnnotate: false,
       lineNumber: null,
       songId: null,
-      annotateResult: []
+      annotateResult: [],
+      annotates: []
     };
     this.showAnnotate = this.showAnnotate.bind(this);
     this.handleAnnotateSubmit = this.handleAnnotateSubmit.bind(this);
@@ -41,45 +42,40 @@ class LyricShow extends Component {
       let songId = this.state.songId;
       let lineNumber = this.state.currentLine;
       let findAnnotates = function (annotate) {
-          if(annotate.songId === parseInt(songId) && annotate.lineNumber === parseInt(lineNumber)) {
-            annotateResult.push(annotate)
-          }
-      }
+        if(annotate.songId === parseInt(songId) && annotate.lineNumber === parseInt(lineNumber)) {
+          annotateResult.push(annotate)
+        }
+      };
       annotates.forEach(findAnnotates)
       this.setState({
-        annotateResult: annotateResult
+        annotateResult: annotateResult,
+        annotates: annotates
       });
     }.bind(this));
   }
   componentDidMount() {
-    //Once the component is fully loaded, we grab the donations
+    //Once the component is fully loaded, we grab the annotations,
     console.log("componentDidMount");
-    console.log(this);
-    // debugger;
     this.getAnnotate();
     //... and set an interval to continuously load new data:
     setInterval(this.getAnnotate, 500);
   }
   handleAnnotateSubmit (e) {
     e.preventDefault;
-    console.log(this);
-    console.log(e);
     var data = e
-    var cuttingPoint = this.state.currentLine.indexOf(" ")
-    data['lineNumber']=this.state.currentLine.slice(0,cuttingPoint).trim();
-    data['songId']=this.state.songId;
+    data['lineNumber'] = this.state.currentLine;
+    data['songId'] = this.state.songId;
     AnnotateHelpers.addAnnotate(data).then(function(req){
       console.log(req);
     }.bind(this));
   }
   showAnnotate(e) {
     console.log(e);
-    let currentLine = e.target;
-    let currentLineClass= currentLine.getAttribute("class")
+    let currentLine = parseInt(e.target.dataset.line);
     let songId = this.props.params.id;
     this.setState({
       showAnnotate: true,
-      currentLine: currentLineClass,
+      currentLine: currentLine,
       openAnnotate: true,
       songId: songId
     });
@@ -99,8 +95,6 @@ class LyricShow extends Component {
     }
     let title = this.state.lyric.title;
     let artist = this.state.lyric.artist;
-    let content = this.state.lyric.content;
-    let contentArray = content.match(/[^\r\n]+/g);
     let openAnnotate = this.state.openAnnotate;
     let showAnnotateResult = this.state.annotateResult.map((result) => {
       return(
@@ -109,18 +103,23 @@ class LyricShow extends Component {
         </p>
       )
     })
-
-    let line = contentArray.map((line, i) => {
-      let css = `${i} lyricLine`;
+    let content = this.state.lyric.content;
+    let contentArray = content.match(/[^\r\n]+/g);
+    var lines = contentArray.map((line, lineNumber) => {
+      var songId = parseInt(this.props.params.id);
+      var annotates = this.state.annotates;
+      var annotatesOnThisLine = annotates.filter(function (annotate) {
+        return annotate.songId === songId && annotate.lineNumber === lineNumber
+      });
+      var annotated = (annotatesOnThisLine.length !== 0);
       return (
-        <li key={i} >
-          <span onClick={this.showAnnotate} className={css}>{ line }</span>
-          { this.state.currentLine === css ? showAnnotateResult : null }
-          { this.state.currentLine === css ? <Annotate onAnnotateSubmit={this.handleAnnotateSubmit}/> : null }
+        <li key={lineNumber} >
+          <span onClick={this.showAnnotate} data-line={lineNumber} style={ annotated ? {background:"gainsboro"} : null }>{ line }</span>
+          { this.state.currentLine === lineNumber ? showAnnotateResult : null }
+          { this.state.currentLine === lineNumber ? <Annotate onAnnotateSubmit={this.handleAnnotateSubmit}/> : null }
         </li>
       );
-    });
-
+    }, this);
     return (
       <div>
         <Link to="/">
@@ -135,7 +134,7 @@ class LyricShow extends Component {
           <h4>Artist: {artist}</h4>
           <div className="lyric">
             <ul>
-              { line }
+              { lines }
             </ul>
           </div>
           <div>
