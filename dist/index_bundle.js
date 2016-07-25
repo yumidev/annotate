@@ -28567,11 +28567,12 @@
 	    _this.state = {
 	      user: {},
 	      showAnnotate: false,
-	      currentLine: '',
+	      currentLine: null,
 	      openAnnotate: false,
 	      lineNumber: null,
 	      songId: null,
-	      annotateResult: []
+	      annotateResult: [],
+	      annotates: []
 	    };
 	    _this.showAnnotate = _this.showAnnotate.bind(_this);
 	    _this.handleAnnotateSubmit = _this.handleAnnotateSubmit.bind(_this);
@@ -28610,17 +28611,16 @@
 	        };
 	        annotates.forEach(findAnnotates);
 	        this.setState({
-	          annotateResult: annotateResult
+	          annotateResult: annotateResult,
+	          annotates: annotates
 	        });
 	      }.bind(this));
 	    }
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      //Once the component is fully loaded, we grab the donations
+	      //Once the component is fully loaded, we grab the annotations,
 	      console.log("componentDidMount");
-	      console.log(this);
-	      // debugger;
 	      this.getAnnotate();
 	      //... and set an interval to continuously load new data:
 	      setInterval(this.getAnnotate, 500);
@@ -28629,11 +28629,8 @@
 	    key: 'handleAnnotateSubmit',
 	    value: function handleAnnotateSubmit(e) {
 	      e.preventDefault;
-	      console.log(this);
-	      console.log(e);
 	      var data = e;
-	      var cuttingPoint = this.state.currentLine.indexOf(" ");
-	      data['lineNumber'] = this.state.currentLine.slice(0, cuttingPoint).trim();
+	      data['lineNumber'] = this.state.currentLine;
 	      data['songId'] = this.state.songId;
 	      _AnnotateHelpers2.default.addAnnotate(data).then(function (req) {
 	        console.log(req);
@@ -28643,12 +28640,11 @@
 	    key: 'showAnnotate',
 	    value: function showAnnotate(e) {
 	      console.log(e);
-	      var currentLine = e.target;
-	      var currentLineClass = currentLine.getAttribute("class");
+	      var currentLine = parseInt(e.target.dataset.line);
 	      var songId = this.props.params.id;
 	      this.setState({
 	        showAnnotate: true,
-	        currentLine: currentLineClass,
+	        currentLine: currentLine,
 	        openAnnotate: true,
 	        songId: songId
 	      });
@@ -28678,8 +28674,6 @@
 	      }
 	      var title = this.state.lyric.title;
 	      var artist = this.state.lyric.artist;
-	      var content = this.state.lyric.content;
-	      var contentArray = content.match(/[^\r\n]+/g);
 	      var openAnnotate = this.state.openAnnotate;
 	      var showAnnotateResult = this.state.annotateResult.map(function (result) {
 	        return _react2.default.createElement(
@@ -28696,22 +28690,27 @@
 	          )
 	        );
 	      });
-
-	      var line = contentArray.map(function (line, i) {
-	        var css = i + ' lyricLine';
+	      var content = this.state.lyric.content;
+	      var contentArray = content.match(/[^\r\n]+/g);
+	      var lines = contentArray.map(function (line, lineNumber) {
+	        var songId = parseInt(_this2.props.params.id);
+	        var annotates = _this2.state.annotates;
+	        var annotatesOnThisLine = annotates.filter(function (annotate) {
+	          return annotate.songId === songId && annotate.lineNumber === lineNumber;
+	        });
+	        var annotated = annotatesOnThisLine.length !== 0;
 	        return _react2.default.createElement(
 	          'li',
-	          { key: i },
+	          { key: lineNumber },
 	          _react2.default.createElement(
 	            'span',
-	            { onClick: _this2.showAnnotate, className: css },
+	            { onClick: _this2.showAnnotate, 'data-line': lineNumber, style: annotated ? { background: "gainsboro" } : null },
 	            line
 	          ),
-	          _this2.state.currentLine === css ? showAnnotateResult : null,
-	          _this2.state.currentLine === css ? _react2.default.createElement(_Annotate2.default, { onAnnotateSubmit: _this2.handleAnnotateSubmit }) : null
+	          _this2.state.currentLine === lineNumber ? showAnnotateResult : null,
+	          _this2.state.currentLine === lineNumber ? _react2.default.createElement(_Annotate2.default, { onAnnotateSubmit: _this2.handleAnnotateSubmit }) : null
 	        );
-	      });
-
+	      }, this);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -28755,7 +28754,7 @@
 	            _react2.default.createElement(
 	              'ul',
 	              null,
-	              line
+	              lines
 	            )
 	          ),
 	          _react2.default.createElement(
