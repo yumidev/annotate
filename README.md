@@ -1,4 +1,4 @@
-# annotate
+# Annotate
 
 - Comment on the songs line by line
 
